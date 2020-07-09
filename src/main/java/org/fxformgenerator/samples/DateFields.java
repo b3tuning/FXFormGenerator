@@ -10,22 +10,21 @@ import org.fxformgenerator.samples.models.Billing;
  */
 public class DateFields extends Application {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+	public static void main(String[] args) {
+		launch(args);
+	}
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.show();
-        primaryStage.hide();
+	@Override
+	public void start(Stage primaryStage) {
+		primaryStage.show();
+		primaryStage.hide();
 
-        Billing billing = new Billing();
-        FXFormGenerator
-                .forModel(billing)
-                .excludeFields("id", "paid")
-                .showAsDialog("Create billing", o -> {
-                    System.out.println("New billing created");
-                });
-
-    }
+		Billing billing = new Billing();
+		FXFormGenerator
+				.forModel(billing)
+				.excludeFields("id", "paid")
+				.showAsDialog("Create billing", o -> {
+					System.out.println("New billing created");
+				});
+	}
 }

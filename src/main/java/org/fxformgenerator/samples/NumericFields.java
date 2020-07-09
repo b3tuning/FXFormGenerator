@@ -11,33 +11,31 @@ import org.fxformgenerator.samples.models.Product;
  */
 public class NumericFields extends Application {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+	public static void main(String[] args) {
+		launch(args);
+	}
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.show();
-        primaryStage.hide();
+	@Override
+	public void start(Stage primaryStage) {
+		primaryStage.show();
+		primaryStage.hide();
 
-        Product product = new Product();
-        FXFormGenerator
-                .forModel(product)
-                .assignFieldLabel("uniqueCode", "SKU")
-                .assignFieldLabel("adultsOnly", "Only for adults?")
-                .assignFieldLabel("originCountry", "Imported from country")
-                .assignFieldsOrder(
-                        "uniqueCode",
-                        "productName",
-                        "unitPrice",
-                        "taxPercent",
-                        "expirationDate",
-                        "provider",
-                        "adultsOnly",
-                        "originCountry")
-                .assignFormLayout(FFGLayout.MULTIPLE_FULLWIDTHROWS_COLUMNS)
-                .showAsDialog(o -> {
-                    System.out.println("Saving product");
-                });
-    }
+		Product product = new Product();
+		FXFormGenerator
+				.forModel(product)
+				.assignFieldLabel("uniqueCode", "SKU")
+				.assignFieldLabel("adultsOnly", "Only for adults?")
+				.assignFieldLabel("originCountry", "Imported from country")
+				.assignFieldsOrder(
+						"uniqueCode",
+						"productName",
+						"unitPrice",
+						"taxPercent",
+						"expirationDate",
+						"provider",
+						"adultsOnly",
+						"originCountry")
+				.assignFormLayout(FFGLayout.MULTIPLE_FULLWIDTHROWS_COLUMNS)
+				.showAsDialog(o -> System.out.println("Saving product"));
+	}
 }

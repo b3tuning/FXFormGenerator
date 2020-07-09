@@ -5,11 +5,10 @@ package org.fxformgenerator.core;
  *
  * @version 0.1
  * On date: May 05, 2016
- *
  */
 public class FXFormGenerator {
 
-    public static FFGBuilder forModel(Object model) {
-        return new FFGBuilder(model);
-    }
+	public static FFGBuilder forModel(Object model) {
+		return new FFGBuilder(model);
+	}
 }

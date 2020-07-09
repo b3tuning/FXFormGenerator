@@ -7,8 +7,8 @@ import java.util.Date;
  */
 public interface AbstractValueFormatter {
 
-    String format(boolean value);
+	String format(boolean value);
 
-    String format(Date value);
+	String format(Date value);
 
 }

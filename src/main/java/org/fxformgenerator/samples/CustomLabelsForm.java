@@ -11,29 +11,28 @@ import org.fxformgenerator.samples.models.User;
  */
 public class CustomLabelsForm extends Application {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+	public static void main(String[] args) {
+		launch(args);
+	}
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.show();
-        primaryStage.hide();
+	@Override
+	public void start(Stage primaryStage) {
+		primaryStage.show();
+		primaryStage.hide();
 
-        User user = new User();
-        FXFormGenerator
-                .forModel(user)
-                .assignFieldLabel("fullName", "Nombre completo")
-                .assignFieldLabel("username", "Nombre de usuario")
-                .assignFormLayout(FFGLayout.SINGLE_COLUMN)
-                .showAsDialog(
-                        "Crear usuario",
-                        "Ingrese los datos del usuario",
-                        o -> {
-                            System.out.println("Sending new user to backend");
-                            System.out.println("Username: " + user.getUsername());
-                            System.out.println("Fullname: " + user.getFullName());
-                        }
-                );
-    }
+		User user = new User();
+		FXFormGenerator
+				.forModel(user)
+				.assignFieldLabel("fullName", "Nombre completo")
+				.assignFieldLabel("username", "Nombre de usuario")
+				.assignFormLayout(FFGLayout.SINGLE_COLUMN)
+				.showAsDialog(
+						"Crear usuario",
+						"Ingrese los datos del usuario",
+						o -> {
+							System.out.println("Sending new user to backend");
+							System.out.println("Username: " + user.getUsername());
+							System.out.println("Fullname: " + user.getFullName());
+						});
+	}
 }

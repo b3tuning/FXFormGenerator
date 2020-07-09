@@ -14,80 +14,68 @@ import org.fxformgenerator.samples.models.Employee;
  */
 public class CustomOptions extends Application {
 
-    public static void main(String[] args) { launch(args); }
+	public static void main(String[] args) { launch(args); }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.show();
-        primaryStage.hide();
-        Employee employee = new Employee();
+	@Override
+	public void start(Stage primaryStage) {
+		primaryStage.show();
+		primaryStage.hide();
+		Employee employee = new Employee();
 
-        //
-        // Custom possible options for repeat in months property
-        ObservableList<String> repeatInMonthsOptions = FXCollections.observableArrayList();
-        repeatInMonthsOptions.add("Cada mes");
-        repeatInMonthsOptions.add("Cada 3 meses");
-        repeatInMonthsOptions.add("Cada 6 meses");
+		//
+		// Custom possible options for repeat in months property
+		ObservableList<String> repeatInMonthsOptions = FXCollections.observableArrayList();
+		repeatInMonthsOptions.add("Cada mes");
+		repeatInMonthsOptions.add("Cada 3 meses");
+		repeatInMonthsOptions.add("Cada 6 meses");
 
-        //
-        // Create a custom Choice box with given options
-        ChoiceBox repeatInMonthsCB = new ChoiceBox();
-        repeatInMonthsCB.setItems(repeatInMonthsOptions);
+		//
+		// Create a custom Choice box with given options
+		ChoiceBox<String> repeatInMonthsCB = new ChoiceBox<>();
+		repeatInMonthsCB.setItems(repeatInMonthsOptions);
 
-        //
-        // Bind choice box changes to model values
-        repeatInMonthsCB
-                .getSelectionModel()
-                .selectedIndexProperty()
-                .addListener((obs, oldV, newV) -> {
-                    switch (newV.intValue()) {
-                        case 0:
-                            employee.setRepeatTestInMonths(1);
-                            break;
-                        case 1:
-                            employee.setRepeatTestInMonths(3);
-                            break;
-                        case 2:
-                            employee.setRepeatTestInMonths(6);
-                            break;
-                    }
-                });
+		//
+		// Bind choice box changes to model values
+		repeatInMonthsCB
+				.getSelectionModel()
+				.selectedIndexProperty()
+				.addListener((obs, oldV, newV) -> {
+					switch (newV.intValue()) {
+						case 0 -> employee.setRepeatTestInMonths(1);
+						case 1 -> employee.setRepeatTestInMonths(3);
+						case 2 -> employee.setRepeatTestInMonths(6);
+					}
+				});
 
-        //
-        // Put current model value as default selected option
-        repeatInMonthsCB.getSelectionModel().select(
-                employee.getRepeatTestInMonths() == 0
-                    ? 0
-                    : employee.getRepeatTestInMonths() == 3
-                        ? 1
-                        : 2
-        );
+		//
+		// Put current model value as default selected option
+		repeatInMonthsCB.getSelectionModel().select(
+				employee.getRepeatTestInMonths() == 0
+				? 0
+				: employee.getRepeatTestInMonths() == 3
+				  ? 1
+				  : 2
+		                                           );
 
-        //
-        // Custom editor for bio property
-        TextArea bioTA = new TextArea();
-        bioTA.setPrefRowCount(4);
-        bioTA.textProperty().addListener((obs, oldV, newV) -> {
-            employee.setBio(newV);
-        });
+		//
+		// Custom editor for bio property
+		TextArea bioTA = new TextArea();
+		bioTA.setPrefRowCount(4);
+		bioTA.textProperty().addListener((obs, oldV, newV) -> employee.setBio(newV));
 
-        FXFormGenerator
-                .forModel(employee)
-                .enableValidation()
-                .assignFieldEditor("repeatTestInMonths", repeatInMonthsCB)
-                .assignFieldEditor("bio", bioTA)
-                .showAsDialog(
-                        o -> {
-
-                            //
-                            // Display input values in read only form
-                            FXFormGenerator
-                                    .forModel(employee)
-                                    .enableReadOnlyMode()
-                                    .showAsDialog(p -> {
-
-                                    });
-                        }
-                );
-    }
+		FXFormGenerator
+				.forModel(employee)
+				.enableValidation()
+				.assignFieldEditor("repeatTestInMonths", repeatInMonthsCB)
+				.assignFieldEditor("bio", bioTA)
+				.showAsDialog(
+						o -> {
+							//
+							// Display input values in read only form
+							FXFormGenerator
+									.forModel(employee)
+									.enableReadOnlyMode()
+									.showAsDialog(p -> { });
+						});
+	}
 }

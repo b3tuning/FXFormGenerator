@@ -9,18 +9,18 @@ import org.fxformgenerator.core.FXFormGenerator;
  */
 public class HValidation extends Application {
 
-    public static void main(String[] args) { launch(args); }
+	public static void main(String[] args) { launch(args); }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.show();
-        primaryStage.hide();
+	@Override
+	public void start(Stage primaryStage) {
+		primaryStage.show();
+		primaryStage.hide();
 
-        FXFormGenerator
-                .forModel(new Artist())
-                .enableValidation()
-                .showAsDialog(o -> {
+		FXFormGenerator
+				.forModel(new Artist())
+				.enableValidation()
+				.showAsDialog(o -> {
 
-                });
-    }
+				});
+	}
 }

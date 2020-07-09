@@ -5,7 +5,7 @@ package org.fxformgenerator.core;
  */
 public class FFGLayout {
 
-    public static final int SINGLE_COLUMN = 1;
-    public static final int MULTIPLE_COLUMNS = 2;
-    public static final int MULTIPLE_FULLWIDTHROWS_COLUMNS = 3;
+	public static final int SINGLE_COLUMN                  = 1;
+	public static final int MULTIPLE_COLUMNS               = 2;
+	public static final int MULTIPLE_FULLWIDTHROWS_COLUMNS = 3;
 }

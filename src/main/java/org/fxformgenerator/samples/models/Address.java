@@ -1,93 +1,97 @@
 package org.fxformgenerator.samples.models;
 
-import javafx.beans.property.*;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  * Created by giovanni on 4/8/16.
  */
 public class Address {
 
-    private IntegerProperty id = new SimpleIntegerProperty();
-    private StringProperty street = new SimpleStringProperty();
-    private SimpleIntegerProperty postalCode = new SimpleIntegerProperty();
-    private StringProperty city = new SimpleStringProperty();
-    private ObjectProperty<State> state = new SimpleObjectProperty<>();
+	private final IntegerProperty       id             = new SimpleIntegerProperty();
+	private final StringProperty        street         = new SimpleStringProperty();
+	private final SimpleIntegerProperty postalCode     = new SimpleIntegerProperty();
+	private final StringProperty        city           = new SimpleStringProperty();
+	private final ObjectProperty<State> state          = new SimpleObjectProperty<>();
+	private final BooleanProperty       billingAddress = new SimpleBooleanProperty(true);
 
-    private BooleanProperty billingAddress = new SimpleBooleanProperty(true);
+	////////////////////////////////////////////////////////////////////////////
 
+	public int getId() {
+		return id.get();
+	}
 
-    ////////////////////////////////////////////////////////////////////////////
+	public IntegerProperty idProperty() {
+		return id;
+	}
 
+	public void setId(int id) {
+		this.id.set(id);
+	}
 
-    public int getId() {
-        return id.get();
-    }
+	public String getStreet() {
+		return street.get();
+	}
 
-    public IntegerProperty idProperty() {
-        return id;
-    }
+	public StringProperty streetProperty() {
+		return street;
+	}
 
-    public void setId(int id) {
-        this.id.set(id);
-    }
+	public void setStreet(String street) {
+		this.street.set(street);
+	}
 
-    public String getStreet() {
-        return street.get();
-    }
+	public int getPostalCode() {
+		return postalCode.get();
+	}
 
-    public StringProperty streetProperty() {
-        return street;
-    }
+	public SimpleIntegerProperty postalCodeProperty() {
+		return postalCode;
+	}
 
-    public void setStreet(String street) {
-        this.street.set(street);
-    }
+	public void setPostalCode(int postalCode) {
+		this.postalCode.set(postalCode);
+	}
 
-    public int getPostalCode() {
-        return postalCode.get();
-    }
+	public String getCity() {
+		return city.get();
+	}
 
-    public SimpleIntegerProperty postalCodeProperty() {
-        return postalCode;
-    }
+	public StringProperty cityProperty() {
+		return city;
+	}
 
-    public void setPostalCode(int postalCode) {
-        this.postalCode.set(postalCode);
-    }
+	public void setCity(String city) {
+		this.city.set(city);
+	}
 
-    public String getCity() {
-        return city.get();
-    }
+	public boolean getBillingAddress() {
+		return billingAddress.get();
+	}
 
-    public StringProperty cityProperty() {
-        return city;
-    }
+	public BooleanProperty billingAddressProperty() {
+		return billingAddress;
+	}
 
-    public void setCity(String city) {
-        this.city.set(city);
-    }
+	public void setBillingAddress(boolean billingAddress) {
+		this.billingAddress.set(billingAddress);
+	}
 
-    public boolean getBillingAddress() {
-        return billingAddress.get();
-    }
+	public State getState() {
+		return state.get();
+	}
 
-    public BooleanProperty billingAddressProperty() {
-        return billingAddress;
-    }
+	public ObjectProperty<State> stateProperty() {
+		return state;
+	}
 
-    public void setBillingAddress(boolean billingAddress) {
-        this.billingAddress.set(billingAddress);
-    }
-
-    public State getState() {
-        return state.get();
-    }
-
-    public ObjectProperty<State> stateProperty() {
-        return state;
-    }
-
-    public void setState(State state) {
-        this.state.set(state);
-    }
+	public void setState(State state) {
+		this.state.set(state);
+	}
 }

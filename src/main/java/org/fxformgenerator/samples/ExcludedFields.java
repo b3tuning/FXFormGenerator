@@ -13,38 +13,36 @@ import org.fxformgenerator.samples.models.State;
  */
 public class ExcludedFields extends Application {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+	public static void main(String[] args) {
+		launch(args);
+	}
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.show();
-        primaryStage.hide();
+	@Override
+	public void start(Stage primaryStage) {
+		primaryStage.show();
+		primaryStage.hide();
 
-        ObservableList<Object> availableStates = FXCollections.observableArrayList();
-        availableStates.add(new State("Sonora", 17000000));
-        availableStates.add(new State("Yucatan", 42000));
+		ObservableList<Object> availableStates = FXCollections.observableArrayList();
+		availableStates.add(new State("Sonora", 17000000));
+		availableStates.add(new State("Yucatan", 42000));
 
-        ObservableList<Object> availablePCodes = FXCollections.observableArrayList();
-        availablePCodes.add(50500);
-        availablePCodes.add(40290);
-        availablePCodes.add(50200);
+		ObservableList<Object> availablePCodes = FXCollections.observableArrayList();
+		availablePCodes.add(50500);
+		availablePCodes.add(40290);
+		availablePCodes.add(50200);
 
-        Address address = new Address();
-        FXFormGenerator
-                .forModel(address)
-                .excludeFields("id")
-                .assignFieldOptions("state", availableStates)
-                .assignFieldOptions("postalCode", availablePCodes)
-                .showAsDialog(
-                        "Crear dirección",
-                        "Registrar nueva dirección",
-                        "Registrar",
-                        "Cancelar",
-                        o -> {
-                            System.out.println("Saving address ...");
-                        }
-                );
-    }
+		Address address = new Address();
+		FXFormGenerator
+				.forModel(address)
+				.excludeFields("id")
+				.assignFieldOptions("state", availableStates)
+				.assignFieldOptions("postalCode", availablePCodes)
+				.showAsDialog(
+						"Crear dirección",
+						"Registrar nueva dirección",
+						"Registrar",
+						"Cancelar",
+						o -> System.out.println("Saving address ...")
+				             );
+	}
 }
