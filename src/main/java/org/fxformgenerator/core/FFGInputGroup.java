@@ -12,6 +12,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import lombok.extern.slf4j.XSlf4j;
 import org.fxformgenerator.core.readonly.AbstractValueFormatter;
 import org.fxformgenerator.core.readonly.DefaultValueFormatter;
 
@@ -27,6 +28,7 @@ import java.util.Date;
  * <p>
  * Created by giovanni on 4/6/16.
  */
+@XSlf4j
 public class FFGInputGroup {
 
 	private final Object             model;
@@ -84,6 +86,9 @@ public class FFGInputGroup {
 		Node fieldEditor = this.readOnly
 		                   ? constructValueLabel()
 		                   : constructEditor();
+		log.error("FFGInputGroup this.readonly = {}", this.readOnly);
+		log.error("FFGInputGroup fieldLB = {}", fieldLB);
+		log.error("FFGInputGroup fieldEditor = {}", fieldEditor);
 
 		vBox.getChildren().addAll(fieldLB, fieldEditor);
 
@@ -114,23 +119,31 @@ public class FFGInputGroup {
 	 */
 	public Node constructEditor() {
 		Method getterMethod = propDesc.getReadMethod();
+		log.error("FFGInputGroup getterMethod = {}", getterMethod);
+		log.error("FFGInputGroup customEditor = {}", customEditor);
+		log.error("FFGInputGroup fieldValues = {}", fieldValues);
 
 		if (customEditor != null) {
 			if (customEditor instanceof ChoiceBox) {
-				((ChoiceBox<?>) customEditor).setMinWidth(minMaxEditorWidth);
-				((ChoiceBox<?>) customEditor).setMaxWidth(minMaxEditorWidth);
+				log.error("FFGInputGroup customEditor = ChoiceBox");
+				((ChoiceBox) customEditor).setMinWidth(minMaxEditorWidth);
+				((ChoiceBox) customEditor).setMaxWidth(minMaxEditorWidth);
 			} else if (customEditor instanceof TextArea) {
+				log.error("FFGInputGroup customEditor = TextArea");
 				((TextArea) customEditor).setMinWidth(minMaxEditorWidth);
 				((TextArea) customEditor).setMaxWidth(minMaxEditorWidth);
 			} else if (customEditor instanceof TextField) {
+				log.error("FFGInputGroup customEditor = TextField");
 				((TextField) customEditor).setMinWidth(minMaxEditorWidth);
 				((TextField) customEditor).setMaxWidth(minMaxEditorWidth);
 			} else if (customEditor instanceof Spinner) {
-				((Spinner<?>) customEditor).setMinWidth(minMaxEditorWidth);
-				((Spinner<?>) customEditor).setMaxWidth(minMaxEditorWidth);
+				log.error("FFGInputGroup customEditor = Spinner");
+				((Spinner) customEditor).setMinWidth(minMaxEditorWidth);
+				((Spinner) customEditor).setMaxWidth(minMaxEditorWidth);
 			}
 
 			return customEditor;
+
 		} else if (fieldValues != null && fieldValues.size() > 0) {
 			ChoiceBox<Object> fieldCB = new ChoiceBox<>();
 			fieldCB.setItems(this.fieldValues);
@@ -159,7 +172,7 @@ public class FFGInputGroup {
 			fieldCB.setMinWidth(minMaxEditorWidth);
 			fieldCB.setMaxWidth(minMaxEditorWidth);
 			return fieldCB;
-		} else if (getterMethod.getReturnType() == int.class) {
+		} else if (getterMethod.getReturnType() == int.class || getterMethod.getReturnType() == Integer.class) {
 			Spinner<Integer> fieldSP = new Spinner<>(new SpinnerValueFactory.IntegerSpinnerValueFactory(
 					Integer.MIN_VALUE,
 					Integer.MAX_VALUE,
@@ -255,6 +268,7 @@ public class FFGInputGroup {
 			fieldDP.setMaxWidth(minMaxEditorWidth);
 			return fieldDP;
 		}
+		log.error("FFGInputGroup returning null");
 
 		return null;
 	}
@@ -278,7 +292,7 @@ public class FFGInputGroup {
 				((TextField) customEditor).setMinWidth(minMaxEditorWidth);
 				((TextField) customEditor).setMaxWidth(minMaxEditorWidth);
 			} else if (customEditor instanceof Spinner) {
-				((Spinner<?>) customEditor).setMinWidth(minMaxEditorWidth);
+				((Spinner<Number>) customEditor).setMinWidth(minMaxEditorWidth);
 				((Spinner<?>) customEditor).setMaxWidth(minMaxEditorWidth);
 			} else if (customEditor instanceof Label) {
 				((Label) customEditor).setMinWidth(minMaxEditorWidth);
